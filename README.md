@@ -24,6 +24,3 @@ $result=$dbfun->save_records('your_table_name',array('salary'=>'200000','name'=>
 // direct query
 $result=$dbfun->get_direct_query_records($query='select * from employee');
 
-echo "<pre>";
-print_r($result);
-
