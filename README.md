@@ -7,7 +7,7 @@ You can use it like below:
 
 require_once 'MysqlDatabaseMysqli.php';
 $dbfun=new MysqlDatabaseMysqli();
-$result=$dbfun->get_records('employee',array('name'=>'amit'));
+$result=$dbfun->get_records('employee',array('name'=>'Test'));
 
 // For Retrive records from employee table.
 $result=$dbfun->get_records('your_table_name');
