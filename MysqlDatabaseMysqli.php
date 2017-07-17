@@ -97,8 +97,6 @@ Class MysqlDatabaseMysqli {
                 if ($counter > 0) {
                     $qwhere .= ' AND ';
                 }
-                $key = $key;
-                $value = $value;
                 $qwhere .= "$key = '$value'";
                 $counter++;
             }
@@ -118,8 +116,6 @@ Class MysqlDatabaseMysqli {
         } else {
             return NULL;
         }
-        //close connection
-        @$connect_close($this->connection);
     }
 
     /*
@@ -142,8 +138,6 @@ Class MysqlDatabaseMysqli {
                 if ($counter > 0) {
                     $qwhere .= ' AND ';
                 }
-                $key = $key;
-                $value = $value;
                 $qwhere .= "$key = '$value'";
                 $counter++;
             }
@@ -158,13 +152,15 @@ Class MysqlDatabaseMysqli {
         }
 
         $idds = $affected_rows($this->connection);
+        
+        //close connection
+        @$connect_close($this->connection);
+        
         if ($idds > 0) {
             return $idds;
         } else {
             return NULL;
         }
-        //close connection
-        @$connect_close($this->connection);
     }
 
     /*
@@ -179,6 +175,9 @@ Class MysqlDatabaseMysqli {
         while ($row = $connection_string($result, $this->associate_type)) {
             $rows[] = $row;
         }
+        //close connection
+        @$connect_close($this->connection);
+        
         return $rows;
     }
 
@@ -204,8 +203,6 @@ Class MysqlDatabaseMysqli {
             if ($count > 0) {
                 $fields .= ', ';
             }
-            $col = $col;
-            $val = $val;
             $fields .= "$col = '$val'";
             $count++;
         }
@@ -217,8 +214,6 @@ Class MysqlDatabaseMysqli {
                 if ($counter > 0) {
                     $qwhere .= ' AND ';
                 }
-                $key = $key;
-                $value = $value;
                 $qwhere .= "$key = '$value'";
                 $counter++;
             }
@@ -242,14 +237,15 @@ Class MysqlDatabaseMysqli {
         } else {
             $idds = $insert_id($this->connection);
         }
-
+        
+        //close connection
+        @$connect_close($this->connection);
+        
         if ($idds > 0) {
             return $idds;
         } else {
             return NULL;
         }
-        //close connection
-        @$connect_close($this->connection);
     }
 
     /*
@@ -276,10 +272,7 @@ Class MysqlDatabaseMysqli {
         } else {
             return NULL;
         }
-
-        //close connection
-        @$connect_close($this->connection);
-    }
+     }
 
 }
 
